@@ -1,68 +1,462 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prueba NFC Flores</title>
+
+  <title>Un detalle para ti ❤️</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: linear-gradient(135deg, #fff5f7, #ffe4eb);
+      color: #5a2635;
+      overflow-x: hidden;
+    }
+
+    /* PÉTALOS */
+
+    .petalos {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 20;
+    }
+
+    .petalo {
+      position: absolute;
+      top: -50px;
+      width: 18px;
+      height: 12px;
+      background: #e88ca5;
+      border-radius: 100% 0 100% 0;
+      opacity: 0.75;
+      animation: caer linear infinite;
+    }
+
+    @keyframes caer {
+
+      0% {
+        transform: translateY(-50px) rotate(0deg);
+      }
+
+      100% {
+        transform: translateY(110vh) rotate(720deg);
+      }
+
+    }
+
+    /* PORTADA */
+
+    .portada {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .flor {
+      font-size: 75px;
+      animation: latido 2s infinite;
+      margin-bottom: 15px;
+    }
+
+    @keyframes latido {
+
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.12);
+      }
+
+    }
+
+    h1 {
+      font-size: clamp(40px, 10vw, 75px);
+      font-weight: normal;
+    }
+
+    .linea {
+      width: 100px;
+      height: 2px;
+      background: #c56a83;
+      margin: 25px auto;
+    }
+
+    .portada h2 {
+      font-size: clamp(20px, 5vw, 30px);
+      font-weight: normal;
+      color: #a84864;
+    }
+
+    .mensaje {
+      max-width: 600px;
+      font-size: 20px;
+      line-height: 1.7;
+      font-style: italic;
+      margin-top: 25px;
+    }
+
+    .flecha {
+      margin-top: 50px;
+      font-size: 35px;
+      animation: bajar 1.5s infinite;
+    }
+
+    @keyframes bajar {
+
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(12px);
+      }
+
+    }
+
+    /* SECCIONES */
+
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .titulo {
+      font-size: 38px;
+      font-weight: normal;
+      margin-bottom: 15px;
+    }
+
+    .subtitulo {
+      font-size: 18px;
+      color: #8a5262;
+      margin-bottom: 40px;
+    }
+
+    /* FOTOS */
+
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .foto {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 18px;
+      box-shadow: 0 8px 25px rgba(100, 30, 50, 0.18);
+    }
+
+    /* VIDEO */
+
+    .video-container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 12px;
+      border-radius: 20px;
+      box-shadow: 0 10px 35px rgba(100, 30, 50, 0.2);
+    }
+
+    video {
+      width: 100%;
+      border-radius: 14px;
+    }
+
+    /* CARTA */
+
+    .carta {
+      max-width: 750px;
+      margin: auto;
+      background: rgba(255,255,255,0.8);
+      padding: 45px 30px;
+      border-radius: 25px;
+      box-shadow: 0 10px 35px rgba(100, 30, 50, 0.15);
+      font-size: 21px;
+      line-height: 1.9;
+      font-style: italic;
+    }
+
+    .corazon {
+      font-size: 45px;
+      margin-bottom: 20px;
+    }
+
+    /* FINAL */
+
+    .final {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .final h2 {
+      font-size: 42px;
+      font-weight: normal;
+    }
+
+    .firma {
+      margin-top: 30px;
+      font-size: 28px;
+      font-style: italic;
+      color: #a84864;
+    }
+
+    @media (max-width: 600px) {
+
+      section {
+        padding: 60px 15px;
+      }
+
+      .galeria {
+        gap: 10px;
+      }
+
+      .carta {
+        padding: 30px 20px;
+        font-size: 18px;
+      }
+
+    }
+
+  </style>
+
 </head>
+
 
 <body>
 
-  <h1 id="nombre">Cargando...</h1>
-  <p id="carta">Buscando información del ramo...</p>
 
-  <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbxNTiVkyTiDadPylJ3tsQkfOMcPwkOVcgk75MxicP29Bu1hN4ObN45lFuy6PVMTkiZ7kA/exec";
+<!-- PÉTALOS -->
 
-    const id = new URLSearchParams(window.location.search).get("id");
+<div class="petalos">
 
-    if (!id) {
+  <div class="petalo" style="left:5%; animation-duration:8s;"></div>
+  <div class="petalo" style="left:15%; animation-duration:11s;"></div>
+  <div class="petalo" style="left:25%; animation-duration:9s;"></div>
+  <div class="petalo" style="left:35%; animation-duration:13s;"></div>
+  <div class="petalo" style="left:45%; animation-duration:10s;"></div>
+  <div class="petalo" style="left:55%; animation-duration:12s;"></div>
+  <div class="petalo" style="left:65%; animation-duration:9s;"></div>
+  <div class="petalo" style="left:75%; animation-duration:14s;"></div>
+  <div class="petalo" style="left:85%; animation-duration:11s;"></div>
+  <div class="petalo" style="left:95%; animation-duration:8s;"></div>
 
-      document.getElementById("nombre").textContent = "Falta el ID";
+</div>
+
+
+<!-- PORTADA -->
+
+<div class="portada">
+
+  <div class="flor">🌹</div>
+
+  <h1 id="nombre">Para ti</h1>
+
+  <div class="linea"></div>
+
+  <h2>Un detalle hecho con amor ❤️</h2>
+
+  <p class="mensaje">
+    Hay momentos que merecen ser recordados
+    para siempre...
+  </p>
+
+  <div class="flecha">
+    ↓
+  </div>
+
+</div>
+
+
+<!-- FOTOS -->
+
+<section>
+
+  <h2 class="titulo">
+    Nuestra historia 📸
+  </h2>
+
+  <p class="subtitulo">
+    Diez momentos que guardamos en el corazón
+  </p>
+
+  <div class="galeria">
+
+    <img class="foto" src="fotos/foto1.jpg">
+    <img class="foto" src="fotos/foto2.jpg">
+
+    <img class="foto" src="fotos/foto3.jpg">
+    <img class="foto" src="fotos/foto4.jpg">
+
+    <img class="foto" src="fotos/foto5.jpg">
+    <img class="foto" src="fotos/foto6.jpg">
+
+    <img class="foto" src="fotos/foto7.jpg">
+    <img class="foto" src="fotos/foto8.jpg">
+
+    <img class="foto" src="fotos/foto9.jpg">
+    <img class="foto" src="fotos/foto10.jpg">
+
+  </div>
+
+</section>
+
+
+<!-- VIDEO -->
+
+<section>
+
+  <h2 class="titulo">
+    Un momento para recordar 🎥
+  </h2>
+
+  <p class="subtitulo">
+    Porque algunos recuerdos merecen volver a vivir
+  </p>
+
+  <div class="video-container">
+
+    <video controls playsinline>
+
+      <source src="video/video.mp4" type="video/mp4">
+
+    </video>
+
+  </div>
+
+</section>
+
+
+<!-- CARTA -->
+
+<section>
+
+  <h2 class="titulo">
+    Una dedicatoria para ti 💌
+  </h2>
+
+  <div class="carta">
+
+    <div class="corazon">
+      ❤️
+    </div>
+
+    <p id="carta">
+      Cargando tu dedicatoria...
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- FINAL -->
+
+<section class="final">
+
+  <div class="flor">
+    🌹
+  </div>
+
+  <h2>
+    Con mucho amor
+  </h2>
+
+  <p>
+    Un detalle para recordar siempre
+  </p>
+
+  <div class="firma">
+    ❤️ Siempre contigo ❤️
+  </div>
+
+</section>
+
+
+<script>
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbxNTiVkyTiDadPylJ3tsQkfOMcPwkOVcgk75MxicP29Bu1hN4ObN45lFuy6PVMTkiZ7kA/exec";
+
+
+const id =
+new URLSearchParams(window.location.search).get("id");
+
+
+if (id) {
+
+  fetch(API_URL + "?id=" + encodeURIComponent(id))
+
+  .then(respuesta => respuesta.json())
+
+  .then(data => {
+
+    if (data.error) {
+
+      document.getElementById("nombre").textContent =
+      "Ramo no encontrado";
 
       document.getElementById("carta").textContent =
-        "Esta página necesita un ID, por ejemplo: ?id=001";
+      data.error;
 
-    } else {
+      return;
 
-      fetch(API_URL + "?id=" + encodeURIComponent(id))
-
-        .then(respuesta => respuesta.json())
-
-        .then(data => {
-
-          if (data.error) {
-
-            document.getElementById("nombre").textContent =
-              "Ramo no encontrado";
-
-            document.getElementById("carta").textContent =
-              data.error;
-
-            return;
-          }
-
-          document.getElementById("nombre").textContent =
-            "Para " + data.NOMBRE;
-
-          document.getElementById("carta").textContent =
-            data.CARTA;
-
-        })
-
-        .catch(error => {
-
-          document.getElementById("nombre").textContent =
-            "Error de conexión";
-
-          document.getElementById("carta").textContent =
-            "No se pudo conectar con la información del ramo.";
-
-          console.error(error);
-
-        });
     }
-  </script>
+
+
+    document.getElementById("nombre").textContent =
+    "Para " + data.NOMBRE;
+
+
+    document.getElementById("carta").textContent =
+    data.CARTA;
+
+  })
+
+  .catch(error => {
+
+    document.getElementById("nombre").textContent =
+    "Error";
+
+    document.getElementById("carta").textContent =
+    "No se pudo cargar la información.";
+
+    console.error(error);
+
+  });
+
+}
+
+</script>
+
 
 </body>
+
 </html>
