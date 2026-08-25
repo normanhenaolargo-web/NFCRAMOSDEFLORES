@@ -3,482 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Un detalle para ti ❤️</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Georgia, 'Times New Roman', serif;
-      background: linear-gradient(135deg, #fff5f7, #ffe4eb);
-      color: #5a2635;
-      overflow-x: hidden;
-    }
-
-    /* =========================
-       PÉTALOS
-    ========================= */
-
-    .petalos {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 20;
-    }
-
-    .petalo {
-      position: absolute;
-      top: -50px;
-      width: 18px;
-      height: 12px;
-      background: #e88ca5;
-      border-radius: 100% 0 100% 0;
-      opacity: 0.75;
-      animation: caer linear infinite;
-    }
-
-    @keyframes caer {
-      0% {
-        transform: translateY(-50px) rotate(0deg);
-      }
-
-      100% {
-        transform: translateY(110vh) rotate(720deg);
-      }
-    }
-
-    /* =========================
-       PORTADA
-    ========================= */
-
-    .portada {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 30px 20px;
-      position: relative;
-    }
-
-    .flor {
-      font-size: 75px;
-      animation: latido 2s infinite;
-      margin-bottom: 15px;
-    }
-
-    @keyframes latido {
-      0%, 100% {
-        transform: scale(1);
-      }
-
-      50% {
-        transform: scale(1.12);
-      }
-    }
-
-    .portada h1 {
-      font-size: clamp(40px, 10vw, 75px);
-      font-weight: normal;
-      margin-bottom: 10px;
-    }
-
-    .portada h2 {
-      font-size: clamp(20px, 5vw, 30px);
-      font-weight: normal;
-      color: #a84864;
-    }
-
-    .linea {
-      width: 100px;
-      height: 2px;
-      background: #c56a83;
-      margin: 25px auto;
-    }
-
-    .mensaje-inicial {
-      max-width: 600px;
-      font-size: 20px;
-      line-height: 1.7;
-      font-style: italic;
-    }
-
-    .flecha {
-      margin-top: 50px;
-      font-size: 35px;
-      animation: subirBajar 1.5s infinite;
-    }
-
-    @keyframes subirBajar {
-      0%, 100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(12px);
-      }
-    }
-
-    /* =========================
-       SECCIONES
-    ========================= */
-
-    section {
-      max-width: 1100px;
-      margin: auto;
-      padding: 80px 20px;
-      text-align: center;
-    }
-
-    .titulo {
-      font-size: 38px;
-      font-weight: normal;
-      margin-bottom: 15px;
-    }
-
-    .subtitulo {
-      font-size: 18px;
-      color: #8a5262;
-      margin-bottom: 40px;
-    }
-
-    /* =========================
-       GALERÍA
-    ========================= */
-
-    .galeria {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-
-    .foto {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      border-radius: 18px;
-      box-shadow: 0 8px 25px rgba(100, 30, 50, 0.18);
-      transition: transform 0.4s ease;
-    }
-
-    .foto:hover {
-      transform: scale(1.03);
-    }
-
-    /* =========================
-       VIDEO
-    ========================= */
-
-    .video-container {
-      max-width: 800px;
-      margin: auto;
-      background: #fff;
-      padding: 12px;
-      border-radius: 20px;
-      box-shadow: 0 10px 35px rgba(100, 30, 50, 0.2);
-    }
-
-    video {
-      width: 100%;
-      display: block;
-      border-radius: 14px;
-    }
-
-    /* =========================
-       DEDICATORIA
-    ========================= */
-
-    .carta {
-      max-width: 750px;
-      margin: auto;
-      background: rgba(255, 255, 255, 0.8);
-      padding: 45px 30px;
-      border-radius: 25px;
-      box-shadow: 0 10px 35px rgba(100, 30, 50, 0.15);
-      font-size: 21px;
-      line-height: 1.9;
-      font-style: italic;
-    }
-
-    .corazon {
-      font-size: 45px;
-      margin-bottom: 20px;
-    }
-
-    /* =========================
-       FINAL
-    ========================= */
-
-    .final {
-      min-height: 60vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .final h2 {
-      font-size: 42px;
-      font-weight: normal;
-    }
-
-    .final p {
-      margin-top: 20px;
-      font-size: 20px;
-    }
-
-    .firma {
-      margin-top: 30px;
-      font-size: 28px;
-      font-style: italic;
-      color: #a84864;
-    }
-
-    /* =========================
-       CELULAR
-    ========================= */
-
-    @media (max-width: 600px) {
-
-      .galeria {
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-      }
-
-      section {
-        padding: 60px 15px;
-      }
-
-      .titulo {
-        font-size: 32px;
-      }
-
-      .carta {
-        padding: 30px 20px;
-        font-size: 18px;
-      }
-    }
-  </style>
+  <title>Prueba NFC Flores</title>
 </head>
 
 <body>
 
-  <!-- PÉTALOS -->
-  <div class="petalos">
+  <h1 id="nombre">Cargando...</h1>
 
-    <div class="petalo" style="left:5%; animation-duration:8s;"></div>
-    <div class="petalo" style="left:15%; animation-duration:11s;"></div>
-    <div class="petalo" style="left:25%; animation-duration:9s;"></div>
-    <div class="petalo" style="left:35%; animation-duration:13s;"></div>
-    <div class="petalo" style="left:45%; animation-duration:10s;"></div>
-    <div class="petalo" style="left:55%; animation-duration:12s;"></div>
-    <div class="petalo" style="left:65%; animation-duration:9s;"></div>
-    <div class="petalo" style="left:75%; animation-duration:14s;"></div>
-    <div class="petalo" style="left:85%; animation-duration:11s;"></div>
-    <div class="petalo" style="left:95%; animation-duration:8s;"></div>
+  <p id="carta">Conectando con Google...</p>
 
-  </div>
+  <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbxNTiVkyTiDadPylJ3tsQkfOMcPwkOVcgk75MxicP29Bu1hN4ObN45lFuy6PVMTkiZ7kA/exec";
 
+    const id = new URLSearchParams(window.location.search).get("id");
 
-  <!-- =========================
-       PORTADA
-  ========================= -->
+    if (!id) {
+      document.getElementById("nombre").textContent = "Falta el ID";
+      document.getElementById("carta").textContent =
+        "La dirección debe terminar en ?id=001";
+    } else {
 
-  <div class="portada">
+      fetch(API_URL + "?id=" + encodeURIComponent(id))
+        .then(respuesta => respuesta.json())
+        .then(data => {
 
-    <div class="flor">🌹</div>
+          console.log(data);
 
-    <h1>Para ti</h1>
+          if (data.error) {
+            document.getElementById("nombre").textContent = "Error";
+            document.getElementById("carta").textContent = data.error;
+            return;
+          }
 
-    <div class="linea"></div>
+          document.getElementById("nombre").textContent =
+            "Para " + data.NOMBRE;
 
-    <h2>Un detalle hecho con amor ❤️</h2>
+          document.getElementById("carta").textContent =
+            data.CARTA;
 
-    <p class="mensaje-inicial">
-      Hay momentos que merecen ser recordados
-      para siempre...
-    </p>
+        })
+        .catch(error => {
 
-    <div class="flecha">
-      ↓
-    </div>
+          document.getElementById("nombre").textContent =
+            "Error de conexión";
 
-  </div>
+          document.getElementById("carta").textContent =
+            error;
 
+        });
+    }
+  </script>
 
-  <!-- =========================
-       FOTOS
-  ========================= -->
-
-  <section>
-
-    <h2 class="titulo">
-      Nuestra historia 📸
-    </h2>
-
-    <p class="subtitulo">
-      Diez momentos que guardamos en el corazón
-    </p>
-
-    <div class="galeria">
-
-      <img class="foto" src="fotos/foto1.jpg" alt="Foto 1">
-      <img class="foto" src="fotos/foto2.jpg" alt="Foto 2">
-
-      <img class="foto" src="fotos/foto3.jpg" alt="Foto 3">
-      <img class="foto" src="fotos/foto4.jpg" alt="Foto 4">
-
-      <img class="foto" src="fotos/foto5.jpg" alt="Foto 5">
-      <img class="foto" src="fotos/foto6.jpg" alt="Foto 6">
-
-      <img class="foto" src="fotos/foto7.jpg" alt="Foto 7">
-      <img class="foto" src="fotos/foto8.jpg" alt="Foto 8">
-
-      <img class="foto" src="fotos/foto9.jpg" alt="Foto 9">
-      <img class="foto" src="fotos/foto10.jpg" alt="Foto 10">
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       VIDEO
-  ========================= -->
-
-  <section>
-
-    <h2 class="titulo">
-      Un momento para recordar 🎥
-    </h2>
-
-    <p class="subtitulo">
-      Porque algunos recuerdos merecen volver a vivir
-    </p>
-
-    <div class="video-container">
-
-      <video controls playsinline>
-        <source src="video/video.mp4" type="video/mp4">
-        Tu navegador no puede reproducir este video.
-      </video>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       DEDICATORIA
-  ========================= -->
-
-  <section>
-
-    <h2 class="titulo">
-      Una dedicatoria para ti 💌
-    </h2>
-
-    <div class="carta">
-
-      <div class="corazon">
-        ❤️
-      </div>
-
-      <p>
-        Quiero que sepas que cada momento vivido
-        contigo es un recuerdo que guardo con mucho
-        cariño en mi corazón.
-      </p>
-
-      <br>
-
-      <p>
-        Estas flores pueden durar para siempre,
-        pero lo que realmente quiero que dure
-        para siempre son nuestros recuerdos.
-      </p>
-
-      <br>
-
-      <p>
-        Gracias por cada sonrisa, cada momento
-        y cada instante compartido.
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       FINAL
-  ========================= -->
-
-  <section class="final">
-
-    <div class="flor">
-      🌹
-    </div>
-
-    <h2>
-      Con mucho amor
-    </h2>
-
-    <p>
-      Un detalle para recordar siempre
-    </p>
-
-    <div class="firma">
-      ❤️ Siempre contigo ❤️
-    </div>
-
-  </section>
-
-<script>
-const API_URL = "https://script.google.com/macros/s/AKfycbxNTiVkyTiDadPylJ3tsQkfOMcPwkOVcgk75MxicP29Bu1hN4ObN45lFuy6PVMTkiZ7kA/exec";
-
-const id = new URLSearchParams(window.location.search).get("id");
-
-if (id) {
-  fetch(`${API_URL}?id=${encodeURIComponent(id)}`)
-    .then(response => response.json())
-    .then(data => {
-
-      if (data.error) {
-        console.log(data.error);
-        return;
-      }
-
-      // Cambiar nombre
-      document.querySelector(".portada h1").textContent =
-        "Para " + data.NOMBRE;
-
-      // Cambiar carta
-      const carta = document.querySelector(".carta");
-
-      carta.innerHTML = `
-        <div class="corazon">❤️</div>
-
-        <p>${data.CARTA}</p>
-      `;
-
-      console.log("Ramo cargado:", data);
-
-    })
-    .catch(error => {
-      console.error("Error:", error);
-    });
-}
-</script>
 </body>
 </html>
