@@ -1,15 +1,68 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>PRUEBA NFC</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prueba NFC Flores</title>
 </head>
 
 <body>
 
-<h1>HOLA NORMAN</h1>
+  <h1 id="nombre">Cargando...</h1>
+  <p id="carta">Buscando información del ramo...</p>
 
-<p>ESTAMOS PROBANDO GITHUB PAGES</p>
+  <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbxNTiVkyTiDadPylJ3tsQkfOMcPwkOVcgk75MxicP29Bu1hN4ObN45lFuy6PVMTkiZ7kA/exec";
+
+    const id = new URLSearchParams(window.location.search).get("id");
+
+    if (!id) {
+
+      document.getElementById("nombre").textContent = "Falta el ID";
+
+      document.getElementById("carta").textContent =
+        "Esta página necesita un ID, por ejemplo: ?id=001";
+
+    } else {
+
+      fetch(API_URL + "?id=" + encodeURIComponent(id))
+
+        .then(respuesta => respuesta.json())
+
+        .then(data => {
+
+          if (data.error) {
+
+            document.getElementById("nombre").textContent =
+              "Ramo no encontrado";
+
+            document.getElementById("carta").textContent =
+              data.error;
+
+            return;
+          }
+
+          document.getElementById("nombre").textContent =
+            "Para " + data.NOMBRE;
+
+          document.getElementById("carta").textContent =
+            data.CARTA;
+
+        })
+
+        .catch(error => {
+
+          document.getElementById("nombre").textContent =
+            "Error de conexión";
+
+          document.getElementById("carta").textContent =
+            "No se pudo conectar con la información del ramo.";
+
+          console.error(error);
+
+        });
+    }
+  </script>
 
 </body>
 </html>
