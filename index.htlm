@@ -444,6 +444,28 @@
 
   </section>
 
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbxNTiVkyTiDadPylJ3tsQkfOMcPwkOVcgk75MxicP29Bu1hN4ObN45lFuy6PVMTkiZ7kA/exec";
 
+const id = new URLSearchParams(window.location.search).get("id");
+
+if (id) {
+  fetch(`${API_URL}?id=${encodeURIComponent(id)}`)
+    .then(response => response.json())
+    .then(data => {
+
+      if (data.error) {
+        console.log(data.error);
+        return;
+      }
+
+      console.log("Ramo cargado:", data);
+
+    })
+    .catch(error => {
+      console.error("Error:", error);
+    });
+}
+</script>
 </body>
 </html>
