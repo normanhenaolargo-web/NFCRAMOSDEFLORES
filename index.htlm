@@ -459,6 +459,19 @@ if (id) {
         return;
       }
 
+      // Cambiar nombre
+      document.querySelector(".portada h1").textContent =
+        "Para " + data.NOMBRE;
+
+      // Cambiar carta
+      const carta = document.querySelector(".carta");
+
+      carta.innerHTML = `
+        <div class="corazon">❤️</div>
+
+        <p>${data.CARTA}</p>
+      `;
+
       console.log("Ramo cargado:", data);
 
     })
