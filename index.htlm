@@ -1,58 +1,13 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prueba NFC Flores</title>
+  <title>PRUEBA</title>
 </head>
-
 <body>
 
-  <h1 id="nombre">Cargando...</h1>
+<h1>HOLA NORMAN</h1>
 
-  <p id="carta">Conectando con Google...</p>
-
-  <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbxNTiVkyTiDadPylJ3tsQkfOMcPwkOVcgk75MxicP29Bu1hN4ObN45lFuy6PVMTkiZ7kA/exec";
-
-    const id = new URLSearchParams(window.location.search).get("id");
-
-    if (!id) {
-      document.getElementById("nombre").textContent = "Falta el ID";
-      document.getElementById("carta").textContent =
-        "La dirección debe terminar en ?id=001";
-    } else {
-
-      fetch(API_URL + "?id=" + encodeURIComponent(id))
-        .then(respuesta => respuesta.json())
-        .then(data => {
-
-          console.log(data);
-
-          if (data.error) {
-            document.getElementById("nombre").textContent = "Error";
-            document.getElementById("carta").textContent = data.error;
-            return;
-          }
-
-          document.getElementById("nombre").textContent =
-            "Para " + data.NOMBRE;
-
-          document.getElementById("carta").textContent =
-            data.CARTA;
-
-        })
-        .catch(error => {
-
-          document.getElementById("nombre").textContent =
-            "Error de conexión";
-
-          document.getElementById("carta").textContent =
-            error;
-
-        });
-    }
-  </script>
+<p>ESTA ES UNA PRUEBA</p>
 
 </body>
 </html>
