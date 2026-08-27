@@ -459,26 +459,21 @@ fotos.forEach(url => {
   }
 
 });
-  // CARGAR VIDEO DESDE GOOGLE SHEETS
+// CARGAR VIDEO DESDE GOOGLE SHEETS
 
 const videoRamo = document.getElementById("videoRamo");
 
 if (data.VIDEO && data.VIDEO.trim() !== "") {
 
-  const fuenteVideo = document.createElement("source");
-
-  fuenteVideo.src = data.VIDEO.trim();
-
-  fuenteVideo.type = "video/mp4";
-
-  videoRamo.appendChild(fuenteVideo);
+  videoRamo.src = data.VIDEO.trim();
 
   videoRamo.load();
 
 }
 
-  .catch(error => {
+  })
 
+  .catch(error => {
     document.getElementById("nombre").textContent =
     "Error";
 
