@@ -415,13 +415,48 @@ if (id) {
     }
 
 
-    document.getElementById("nombre").textContent =
-    "Para " + data.NOMBRE;
+   document.getElementById("nombre").textContent =
+"Para " + data.NOMBRE;
 
 
-    document.getElementById("carta").textContent =
-    data.CARTA;
+document.getElementById("carta").textContent =
+data.CARTA;
 
+
+// CARGAR FOTOS DESDE GOOGLE SHEETS
+
+const galeria = document.getElementById("galeria");
+
+const fotos = [
+  data["FOTO 1"],
+  data["FOTO 2"],
+  data["FOTO 3"],
+  data["FOTO 4"],
+  data["FOTO 5"],
+  data["FOTO 6"],
+  data["FOTO 7"],
+  data["FOTO 8"],
+  data["FOTO 9"],
+  data["FOTO 10"]
+];
+
+fotos.forEach(url => {
+
+  if (url && url.trim() !== "") {
+
+    const imagen = document.createElement("img");
+
+    imagen.className = "foto";
+
+    imagen.src = url.trim();
+
+    imagen.loading = "lazy";
+
+    galeria.appendChild(imagen);
+
+  }
+
+});
   })
 
   .catch(error => {
