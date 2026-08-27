@@ -330,15 +330,12 @@
     Porque algunos recuerdos merecen volver a vivir
   </p>
 
-  <div class="video-container">
+<div class="video-container">
 
-    <video controls playsinline>
+  <video id="videoRamo" controls playsinline>
+  </video>
 
-      <source src="video/video.mp4" type="video/mp4">
-
-    </video>
-
-  </div>
+</div>
 
 </section>
 
@@ -462,7 +459,23 @@ fotos.forEach(url => {
   }
 
 });
-  })
+  // CARGAR VIDEO DESDE GOOGLE SHEETS
+
+const videoRamo = document.getElementById("videoRamo");
+
+if (data.VIDEO && data.VIDEO.trim() !== "") {
+
+  const fuenteVideo = document.createElement("source");
+
+  fuenteVideo.src = data.VIDEO.trim();
+
+  fuenteVideo.type = "video/mp4";
+
+  videoRamo.appendChild(fuenteVideo);
+
+  videoRamo.load();
+
+}
 
   .catch(error => {
 
